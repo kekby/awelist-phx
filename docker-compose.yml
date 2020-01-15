@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: mix phx.server
+    volumes:
+      - .:/home/app
+    ports:
+      - "4000:4000"
+    links:
+      - db
+    depends_on:
+      - db
+  test:
+    image: <app_dir>_web
+    command: mix test
+    environment:
+      MIX_ENV: test
+      PORT: 4001
+    volumes:
+      - .:/home/app 
+  db:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: <db_user>
+      POSTGRES_PASSWORD: <db_user_password>
