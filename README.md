@@ -15,9 +15,13 @@ To start application:
     ```sh
     docker-compose run test mix ecto.create
     ```
+  * install assets: 
+    ```sh
+    cd assets && npm install && cd ..
+    ```
   * Run application: 
     ```sh
-    docker-compose up -d
+    docker-compose run web
     ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
