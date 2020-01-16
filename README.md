@@ -2,10 +2,10 @@
 
 To start application:
 
-  * Install Docker: https://docs.docker.com/install/
-  * Start Docker container:
+  * Install Docker: https://docs.docker.com/install/ and docker-compose: https://docs.docker.com/compose/install/
+  * Get dependencies:
     ```sh
-    docker-compose run web mix phx.new . --app awesome_list
+    docker-compose run web mix deps.get
     ```
   * Create database for dev:
     ```sh
@@ -13,7 +13,7 @@ To start application:
     ```
     and for test:
     ```sh
-    docker-compose run web mix ecto.create
+    docker-compose run test mix ecto.create
     ```
   * Run application: 
     ```sh
