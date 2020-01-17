@@ -1,4 +1,4 @@
-defmodule AwesomeListWeb.PageController do
+defmodule AwesomeListWeb.ListController do
   use AwesomeListWeb, :controller
 
   def index(conn, _params) do

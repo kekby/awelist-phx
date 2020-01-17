@@ -16,7 +16,7 @@ defmodule AwesomeListWeb.Router do
   scope "/", AwesomeListWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", ListController, :index
   end
 
   # Other scopes may use custom stacks.

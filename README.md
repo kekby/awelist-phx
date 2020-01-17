@@ -21,7 +21,7 @@ To start application:
     ```
   * Run application: 
     ```sh
-    docker-compose run web
+    docker-compose up
     ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
