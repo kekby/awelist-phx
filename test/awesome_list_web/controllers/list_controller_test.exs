@@ -19,4 +19,15 @@ defmodule AwesomeListWeb.PageControllerTest do
     assert Map.has_key?(conn.assigns, :stars) == false
   end
 
+  test "should redirect", %{conn: conn} do
+    conn = get conn, "/some_path"
+    assert html_response(conn, 302)
+    assert redirected_to(conn, 302) =~ "/"
+  end
+
+  test "should redirect from any path", %{conn: conn} do
+    conn = get conn, "/some_path/inner_path/?query=test"
+    assert html_response(conn, 302)
+    assert redirected_to(conn, 302) =~ "/"
+  end
 end

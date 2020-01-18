@@ -1,5 +1,10 @@
 defmodule AwesomeListWeb.ListController do
   use AwesomeListWeb, :controller
+  alias AwesomeListWeb.Router
+
+  def redirect_to_main(conn, _) do
+    redirect(conn, to: Router.Helpers.list_path(conn, :index))
+  end
 
   def index(%{ query_params: %{ "min_stars" => stars } } = conn, _params) do
     render_page(conn, Integer.parse(stars))
