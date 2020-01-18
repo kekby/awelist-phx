@@ -44,6 +44,15 @@ Other useful commands:
   make compose-kill
 ```
 
+```sh
+  make compose-bash
+```
+
+```sh
+  make compose-iex
+```
+
+
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
