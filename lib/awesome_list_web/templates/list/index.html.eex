@@ -1,4 +1,4 @@
 <%= render(AwesomeListWeb.HeaderView, "index.html", conn: @conn) %>
 <main>
-
+  <%= render(AwesomeListWeb.ListView, "list.html", list: @conn.assigns.list) %>
 </main>

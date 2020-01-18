@@ -1,10 +1,12 @@
 defmodule AwesomeList.Storage do
+  alias AwesomeList.Repo
+  alias AwesomeList.Awesome
 
   def get_list(stars) do
-    [1, 2]
+    Repo
   end
 
   def get_list() do
-    [1, 2, 3]
+    Repo.all(Awesome.Item)
   end
 end

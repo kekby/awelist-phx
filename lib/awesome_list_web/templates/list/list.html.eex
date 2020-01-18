@@ -1,0 +1,12 @@
+<ul>
+  <%= for item <- @list do %>
+    <li>
+      <a href=<%= item.url %>><%= item.title %></a>
+      <%= Helpers.List.get_stars_icon(item.stars) %><sub><%= item.stars %></sub>
+      📅<sub>214</sub>
+      —
+      <span><%= item.description %></span>
+
+      </li>
+  <% end %>
+</ul>
