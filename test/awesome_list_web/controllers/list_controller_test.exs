@@ -14,7 +14,7 @@ defmodule AwesomeListWeb.PageControllerTest do
   end
 
   test "GET /?min_stars=some_string", %{conn: conn} do
-    conn = get conn, "/?min_stars="
+    conn = get conn, "/?min_stars=some_string"
     assert html_response(conn, 200)
     assert conn.assigns.list == AwesomeList.Storage.get_list()
   end
