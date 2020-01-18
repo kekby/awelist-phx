@@ -18,3 +18,6 @@ compose-bash:
 
 compose-iex:
 	docker-compose run web iex -S mix
+
+compose-deps:
+	docker-compose run web mix deps.get

@@ -11,9 +11,10 @@ defmodule AwesomeList.Application do
       # Start the Ecto repository
       AwesomeList.Repo,
       # Start the endpoint when the application starts
-      AwesomeListWeb.Endpoint
+      AwesomeListWeb.Endpoint,
       # Starts a worker by calling: AwesomeList.Worker.start_link(arg)
       # {AwesomeList.Worker, arg},
+      AwesomeList.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

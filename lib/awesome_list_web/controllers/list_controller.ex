@@ -20,11 +20,13 @@ defmodule AwesomeListWeb.ListController do
     AwesomeList.Storage.get_list(stars)
   end
 
+  defp get_awesome_list(:error) do
+    AwesomeList.Storage.get_list
+  end
+
   defp get_awesome_list() do
     AwesomeList.Storage.get_list
   end
 
-  defp get_awesome_list(:error) do
-    AwesomeList.Storage.get_list
-  end
+
 end
