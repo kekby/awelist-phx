@@ -17,4 +17,4 @@ compose-bash:
 	docker-compose run web bash
 
 compose-iex:
-	docker-compose run app iex -S mix
+	docker-compose run web iex -S mix
