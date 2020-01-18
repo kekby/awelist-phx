@@ -1,8 +1,11 @@
 # AwesomeList
 
+## Prerequisites
+
+- Docker: https://docs.docker.com/install/ and docker-compose: https://docs.docker.com/compose/install/
+  
 To start application:
 
-  * Install Docker: https://docs.docker.com/install/ and docker-compose: https://docs.docker.com/compose/install/
   * Get dependencies:
     ```sh
     docker-compose run web mix deps.get
@@ -23,6 +26,24 @@ To start application:
     ```sh
     docker-compose up
     ```
+
+### OR:
+
+You can simply run shortcuts:
+```sh
+  make install
+  make run
+```
+
+Other useful commands:
+```sh
+  make compose-test # run tests
+```
+
+```sh
+  make compose-kill
+```
+
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 

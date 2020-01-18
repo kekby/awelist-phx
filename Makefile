@@ -3,6 +3,7 @@ install:
 	docker-compose run web mix ecto.create
 	docker-compose run test mix ecto.create
 	cd assets && npm install && cd ..
+	
 run:
 	docker-compose up
 
