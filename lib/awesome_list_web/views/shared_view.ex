@@ -1,4 +1,4 @@
-defmodule AwesomeListWeb.SharedView do
+defmodule AwesomeListWeb.HeaderView do
   use AwesomeListWeb, :view
 
   def get_min_stars() do

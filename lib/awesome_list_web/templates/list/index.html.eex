@@ -1,4 +1,4 @@
-<%= render(AwesomeListWeb.SharedView, "header.html", conn: @conn) %>
+<%= render(AwesomeListWeb.HeaderView, "index.html", conn: @conn) %>
 <main>
 
 </main>
