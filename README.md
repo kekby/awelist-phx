@@ -3,7 +3,10 @@
 ## Prerequisites
 
 - Docker: https://docs.docker.com/install/ and docker-compose: https://docs.docker.com/compose/install/
-  
+- Get an access token from [Github](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
+- Create `config/dev.secret.exs` file and place your token. For reference, see `config/dev.secret.example.exs`. 
+
+
 To start application:
 
   * Get dependencies:

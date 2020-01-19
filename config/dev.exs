@@ -73,3 +73,5 @@ config :awesome_list, AwesomeList.Repo,
   database: "awesome_list_dev",
   hostname: "db",
   pool_size: 10
+
+import_config "dev.secret.exs"
