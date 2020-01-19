@@ -45,6 +45,7 @@ defmodule AwesomeList.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:quantum, "~> 2.3"},
       {:tentacat, "~> 1.0"},
+      {:httpoison, "~> 1.6"},
     ]
   end
 
