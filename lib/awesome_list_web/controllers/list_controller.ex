@@ -28,5 +28,4 @@ defmodule AwesomeListWeb.ListController do
     AwesomeList.Storage.get_list
   end
 
-
 end
