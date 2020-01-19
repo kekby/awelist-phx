@@ -1,11 +1,5 @@
 defmodule AwesomeList.GithubApi do
-  require Logger
   alias AwesomeList.MdParser
-
-  def get_parsed() do
-    fetch_repo()
-    |> parse
-  end
 
   def fetch_repo() do
     get_repo_url()
@@ -22,12 +16,6 @@ defmodule AwesomeList.GithubApi do
   end
 
   defp handle_response({ :error, %{ reason: reason } }), do: { :error, reason }
-
-  defp parse({ :ok, body }) do
-    body |> MdParser.parse
-  end
-
-  defp parse({ :error, error }), do: error
 
   defp get_client() do
     Tentacat.Client.new(%{ access_token: get_access_token() })
