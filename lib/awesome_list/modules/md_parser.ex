@@ -25,7 +25,8 @@ defmodule AwesomeList.MdParser do
   defp parse_categories(category_list) do
     category_list
       |> Task.async_stream(&get_data_from_category(&1))
-      |> Enum.to_list
+      |> stream_to_list
+      |> IO.inspect
   end
 
   defp get_data_from_category(category_raw_string) do
@@ -42,10 +43,16 @@ defmodule AwesomeList.MdParser do
   defp parse_repos(raw_repos) do
     raw_repos
     |> Task.async_stream(&parse_repo(&1))
-    |> Enum.to_list
+    |> stream_to_list
   end
 
   defp parse_repo(repo_data_string) do
     repo_data_string
   end
+
+  defp stream_to_list(stream) do
+    stream
+    |> Enum.reduce([], fn { :ok, item }, acc -> [ item | acc ] end)
+  end
+
 end
