@@ -46,6 +46,7 @@ defmodule AwesomeList.MixProject do
       {:quantum, "~> 2.3"},
       {:tentacat, "~> 1.0"},
       {:httpoison, "~> 1.6"},
+      {:earmark, "~> 1.4"},
       {:bypass, "~> 1.0", only: :test},
     ]
   end

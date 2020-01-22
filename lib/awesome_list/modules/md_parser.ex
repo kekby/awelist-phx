@@ -1,4 +1,5 @@
 defmodule AwesomeList.MdParser do
+  alias AwesomeList.AstHelper
 
   @section_tag  "\n# "
   @category_tag "\n## "
@@ -16,17 +17,16 @@ defmodule AwesomeList.MdParser do
 
   defp clean_markup(markdown) do
     markdown
-    |> String.split(@section_tag, trim: true)
-    |> List.first()
-    |> String.split(@category_tag, trim: true)
-    |> List.delete_at(0)
+      |> String.split(@section_tag, trim: true)
+      |> List.first()
+      |> String.split(@category_tag, trim: true)
+      |> List.delete_at(0)
   end
 
   defp parse_categories(category_list) do
     category_list
       |> Task.async_stream(&get_data_from_category(&1))
       |> stream_to_list
-      |> IO.inspect
   end
 
   defp get_data_from_category(category_raw_string) do
@@ -42,17 +42,27 @@ defmodule AwesomeList.MdParser do
 
   defp parse_repos(raw_repos) do
     raw_repos
-    |> Task.async_stream(&parse_repo(&1))
-    |> stream_to_list
+      |> Task.async_stream(&parse_repo(&1))
+      |> stream_to_list
   end
 
   defp parse_repo(repo_data_string) do
     repo_data_string
+      |> Earmark.as_ast
+      |> get_repo_data_from_ast
   end
 
   defp stream_to_list(stream) do
     stream
     |> Enum.reduce([], fn { :ok, item }, acc -> [ item | acc ] end)
+  end
+
+  defp get_repo_data_from_ast({ :ok, ast, _ }) do
+    ast |> IO.inspect |> AstHelper.find_node("a")
+  end
+
+  defp get_repo_data_from_ast(_) do
+    raise "Error while parsing md -> ast"
   end
 
 end
