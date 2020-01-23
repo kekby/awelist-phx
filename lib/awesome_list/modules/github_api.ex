@@ -1,7 +1,7 @@
-defmodule AwesomeList.GithubApi do
+defmodule AwesomeList.GithubHttpApi do
 
-  def fetch_repo() do
-    get_repo_url()
+  def fetch_repo(url) do
+    url
     |> HTTPoison.get
     |> handle_response
   end
@@ -20,6 +20,5 @@ defmodule AwesomeList.GithubApi do
   #   Tentacat.Client.new(%{ access_token: get_access_token() })
   # end
 
-  defp get_repo_url(), do: Application.get_env(:awesome_list, :github_awesome_repo)
   # defp get_access_token(), do: Application.get_env(:awesome_list, :github_access_token)
 end

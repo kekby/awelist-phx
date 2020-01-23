@@ -3,6 +3,7 @@ defmodule AwesomeList.MdParser do
 
   @section_tag  "\n# "
   @category_tag "\n## "
+  @selector "li"
 
   def parse(body) do
     body
@@ -32,6 +33,7 @@ defmodule AwesomeList.MdParser do
   defp get_data_from_category(category_raw_string) do
     [title, description | raw_repos ] = category_raw_string
       |> String.split("\n", trim: true)
+
     { title, parse_description(description), parse_repos(raw_repos) }
   end
 
@@ -54,15 +56,34 @@ defmodule AwesomeList.MdParser do
 
   defp stream_to_list(stream) do
     stream
-    |> Enum.reduce([], fn { :ok, item }, acc -> [ item | acc ] end)
+      |> Enum.reduce([], fn { :ok, item }, acc -> [ item | acc ] end)
   end
 
   defp get_repo_data_from_ast({ :ok, ast, _ }) do
-    ast |> IO.inspect |> AstHelper.find_node("a")
+    ast
+      |> AstHelper.find_node(@selector)
+      |> extract_repo_data
   end
 
   defp get_repo_data_from_ast(_) do
     raise "Error while parsing md -> ast"
+  end
+
+  defp extract_repo_data({ _, _, childs }) do
+    [ { _, [{ _, url }], [ repo_name ]} | rest ] = childs
+
+    description = rest
+    |> Earmark.Transform.transform(%{ smartypants: true })
+    |> String.replace("\n", "")
+
+    %{
+      link: { repo_name, url },
+      description: description
+    }
+  end
+
+  defp extract_repo_data(nil) do
+    raise "Node is not exist"
   end
 
 end

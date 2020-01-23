@@ -17,4 +17,5 @@ config :awesome_list, AwesomeList.Repo,
   hostname: "db",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :awesome_list, :api, AwesomeList.Api.InMemory
+config :awesome_list, :github_api, AwesomeList.GithubApiFs
+config :awesome_list, github_awesome_repo: "awesome_list.md"

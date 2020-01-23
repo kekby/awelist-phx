@@ -1,8 +1,9 @@
 defmodule AwesomeList.Loader do
-  alias AwesomeList.{ GithubApi, MdParser }
+  alias AwesomeList.{ MdParser }
 
   def get_list() do
-    GithubApi.fetch_repo()
+    get_repo_url()
+    |> get_api().fetch_repo()
     |> parse_response()
   end
 
@@ -12,4 +13,10 @@ defmodule AwesomeList.Loader do
   end
 
   defp parse_response(error), do: error
+
+  defp get_api() do
+    Application.get_env(:awesome_list, :github_api)
+  end
+
+  defp get_repo_url(), do: Application.get_env(:awesome_list, :github_awesome_repo)
 end

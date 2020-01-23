@@ -1,34 +1,34 @@
 defmodule AwesomeListWeb.GithubApiTest do
   use ExUnit.Case
-  alias AwesomeList.GithubApi
+  alias AwesomeList.GithubHttpApi
 
   setup do
     bypass = Bypass.open()
-    Application.put_env(:awesome_list, :github_awesome_repo, "http://localhost:#{bypass.port}")
-    {:ok, bypass: bypass}
+    url = "http://localhost:#{bypass.port}"
+    {:ok, bypass: bypass, url: url }
   end
 
-  test "handle HTTP with 200 status", %{bypass: bypass} do
+  test "handle HTTP with 200 status", %{ bypass: bypass, url: url } do
     Bypass.expect(bypass, fn conn ->
       assert "GET" == conn.method
       Plug.Conn.resp(conn, 200, "body")
     end)
 
-    assert { :ok, "body" } = GithubApi.fetch_repo()
+    assert { :ok, "body" } = GithubHttpApi.fetch_repo(url)
   end
 
-  test "handle HTTP with error status", %{bypass: bypass} do
+  test "handle HTTP with error status", %{bypass: bypass, url: url} do
     Bypass.expect(bypass, fn conn ->
       assert "GET" == conn.method
       Plug.Conn.resp(conn, 500, "body")
     end)
 
-    assert { :error, "HTTP Status: 500" } = GithubApi.fetch_repo()
+    assert { :error, "HTTP Status: 500" } = GithubHttpApi.fetch_repo(url)
   end
 
-  test "handle request down", %{bypass: bypass} do
+  test "handle request down", %{bypass: bypass, url: url} do
     Bypass.down(bypass)
 
-    assert { :error, :econnrefused } = GithubApi.fetch_repo()
+    assert { :error, :econnrefused } = GithubHttpApi.fetch_repo(url)
   end
 end
