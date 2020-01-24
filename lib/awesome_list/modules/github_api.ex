@@ -1,4 +1,5 @@
 defmodule AwesomeList.GithubHttpApi do
+  @behaviour AwesomeList.GithubApi
 
   def fetch_repo(url) do
     url

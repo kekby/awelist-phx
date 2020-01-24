@@ -1,4 +1,5 @@
 defmodule AwesomeList.GithubApiFs do
+  @behaviour AwesomeList.GithubApi
 
   def fetch_repo(path) do
     path
