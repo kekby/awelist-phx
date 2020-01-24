@@ -12,6 +12,6 @@ defmodule AwesomeList.GithubApiFs do
   end
 
   defp handle_response(_) do
-    raise "Error while reading file"
+    { :error, "Error while reading file"}
   end
 end
