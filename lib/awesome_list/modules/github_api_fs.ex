@@ -1,5 +1,5 @@
 defmodule AwesomeList.GithubApiFs do
-  @behaviour AwesomeList.GithubApi
+  # @behaviour AwesomeList.GithubApi
 
   def fetch_raw_file(path) do
     path

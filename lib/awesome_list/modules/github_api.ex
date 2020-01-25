@@ -15,6 +15,15 @@ defmodule AwesomeList.GithubHttpApi do
     |> IO.inspect
   end
 
+  def get_repo_owner(url) do
+    matcher = ~r/github.com\/(.*)\//
+
+    case Regex.run(matcher, url) do
+      [ _, owner ] -> owner
+      _ -> :error
+    end
+    
+  end
 
   defp handle_response({ :ok, %{ body: body, status_code: 200 } }) do
     { :ok, body }
@@ -32,9 +41,5 @@ defmodule AwesomeList.GithubHttpApi do
 
   defp get_access_token(), do: Application.get_env(:awesome_list, :github_access_token)
 
-  defp get_repo_owner(url) do
-    matcher = ~r/github.com\/(.*)\//
-    [ _, owner ] = Regex.run(matcher, url)
-    owner
-  end
+  
 end

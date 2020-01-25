@@ -31,4 +31,9 @@ defmodule AwesomeListWeb.GithubApiTest do
 
     assert { :error, :econnrefused } = GithubHttpApi.fetch_raw_file(url)
   end
+
+  test "should return owner name from url" do
+    assert "facebook" == GithubHttpApi.get_repo_owner("https://github.com/facebook/react")
+    assert :error == GithubHttpApi.get_repo_owner("https://facebook.com/facebook/react")
+  end
 end
