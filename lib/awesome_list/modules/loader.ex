@@ -5,7 +5,7 @@ defmodule AwesomeList.Loader do
     api = get_api()
 
     get_repo_url()
-    |> api.fetch_repo()
+    |> api.fetch_raw_file()
     |> parse_response()
 
   end

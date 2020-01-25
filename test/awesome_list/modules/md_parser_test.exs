@@ -34,7 +34,7 @@ defmodule AwesomeListWeb.MdParserTest do
   setup do
     api = Application.get_env(:awesome_list, :github_api)
     url = Application.get_env(:awesome_list, :github_awesome_repo)
-    { _, markdown } = api.fetch_repo(url)
+    { _, markdown } = api.fetch_raw_file(url)
     { :ok, markdown: markdown }
   end
 

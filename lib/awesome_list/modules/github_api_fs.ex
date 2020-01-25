@@ -1,7 +1,7 @@
 defmodule AwesomeList.GithubApiFs do
   @behaviour AwesomeList.GithubApi
 
-  def fetch_repo(path) do
+  def fetch_raw_file(path) do
     path
     |> File.read
     |> handle_response
