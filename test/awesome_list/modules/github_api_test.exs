@@ -36,4 +36,5 @@ defmodule AwesomeListWeb.GithubApiTest do
     assert "facebook" == GithubHttpApi.get_repo_owner("https://github.com/facebook/react")
     assert :error == GithubHttpApi.get_repo_owner("https://facebook.com/facebook/react")
   end
+
 end
