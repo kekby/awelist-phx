@@ -33,8 +33,8 @@ defmodule AwesomeListWeb.GithubApiTest do
   end
 
   test "should return owner name from url" do
-    assert "facebook" == GithubHttpApi.get_repo_owner("https://github.com/facebook/react")
-    assert :error == GithubHttpApi.get_repo_owner("https://facebook.com/facebook/react")
+    assert { "facebook", "react" } == GithubHttpApi.get_repo_meta("https://github.com/facebook/react")
+    assert :error == GithubHttpApi.get_repo_meta("https://facebook.com/facebook/react")
   end
 
 end
