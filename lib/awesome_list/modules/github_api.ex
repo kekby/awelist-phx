@@ -1,12 +1,5 @@
-defmodule AwesomeList.GithubHttpApi do
-  @behaviour AwesomeList.GithubApi
+defmodule AwesomeList.GithubApi do
   require Logger
-
-  def fetch_raw_file(url) do
-    url
-    |> HTTPoison.get
-    |> handle_response
-  end
 
   def get_repo_data({ repo_name, url }) do
     case get_repo_meta(url) do
@@ -33,16 +26,6 @@ defmodule AwesomeList.GithubHttpApi do
       |> handle_repo_response(name)
   end
 
-  defp handle_response({ :ok, %{ body: body, status_code: 200 } }) do
-    { :ok, body }
-  end
-
-  defp handle_response({ :ok, %{ status_code: status_code }}) do
-    { :error, "HTTP Status: #{status_code}" }
-  end
-
-  defp handle_response({ :error, %{ reason: reason } }), do: { :error, reason }
-
   defp handle_repo_response({ 200, body = %{ 
     "stargazers_count" => stars, 
     "pushed_at" => last_updated 
@@ -55,7 +38,6 @@ defmodule AwesomeList.GithubHttpApi do
 
   defp handle_repo_response({ status, _, _ }, repo_name) do
     Logger.error "HTTP Status: #{status} on repo: #{repo_name}"
-    
     nil
   end
 

@@ -65,7 +65,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-config :awesome_list, :github_api, AwesomeList.GithubHttpApi
+config :awesome_list, :file_fetch_api, AwesomeList.FileFetcherHttp
 config :awesome_list, github_awesome_repo: "https://raw.githubusercontent.com/h4cc/awesome-elixir/master/README.md"
 
 # Configure your database

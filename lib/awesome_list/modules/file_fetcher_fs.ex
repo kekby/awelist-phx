@@ -1,14 +1,10 @@
-defmodule AwesomeList.GithubApiFs do
-  @behaviour AwesomeList.GithubApi
+defmodule AwesomeList.FileFetcherFs do
+  @behaviour AwesomeList.FileFetcher
 
   def fetch_raw_file(path) do
     path
     |> File.read
     |> handle_response
-  end
-
-  def get_repo_data({ _, _ }) do
-    { :ok, %{ stars: 200 } }
   end
 
   defp handle_response({ :ok, raw_string }) do
