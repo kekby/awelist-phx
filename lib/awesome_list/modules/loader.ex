@@ -1,5 +1,5 @@
 defmodule AwesomeList.Loader do
-  alias AwesomeList.{ MdParser, GithubApi }
+  alias AwesomeList.{ MdParser, GithubApi, Storage }
   @timeout :infinity 
 
   def get_list() do
@@ -9,6 +9,7 @@ defmodule AwesomeList.Loader do
       |> api.fetch_raw_file()
       |> parse_response()
       |> transform_categories()
+      |> Storage.save_list()
   end
 
   defp parse_response({ :ok, body }) do
@@ -27,12 +28,13 @@ defmodule AwesomeList.Loader do
   end
 
   defp fetch_data_about_repos({ title, description, repos }) do
-    repos
+    new_repos = repos
       # TODO: remove this
       |> Enum.take(2)
       |> Task.async_stream(fn %{ link: link } -> GithubApi.get_repo_data(link) end)
-      |> Enum.map(fn {:ok, result} -> { title, description, result } end)
-      |> IO.inspect
+      |> Enum.map(fn {:ok, result} -> result end)
+    
+    { title, description, new_repos }
   end
 
 

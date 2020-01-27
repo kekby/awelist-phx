@@ -1,6 +1,5 @@
 defmodule AwesomeList.Storage do
-  alias AwesomeList.Repo
-  alias AwesomeList.Awesome
+  alias AwesomeList.{ Repo, Awesome }
   import Ecto.Query, only: [from: 2]
 
   def get_list(stars) do
@@ -9,5 +8,9 @@ defmodule AwesomeList.Storage do
 
   def get_list() do
     Repo.all(Awesome.Item)
+  end
+
+  def save_list(list) do
+    list 
   end
 end
