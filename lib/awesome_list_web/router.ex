@@ -17,7 +17,6 @@ defmodule AwesomeListWeb.Router do
     pipe_through :browser
 
     get "/", ListController, :index
-
   end
 
   scope "/", AwesomeListWeb do

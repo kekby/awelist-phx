@@ -20,7 +20,7 @@ defmodule AwesomeList.MixProject do
   def application do
     [
       mod: {AwesomeList.Application, []},
-      extra_applications: [:logger, :runtime_tools],
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -47,7 +47,7 @@ defmodule AwesomeList.MixProject do
       {:tentacat, "~> 1.0"},
       {:httpoison, "~> 1.6"},
       {:earmark, "~> 1.4"},
-      {:bypass, "~> 1.0", only: :test},
+      {:bypass, "~> 1.0", only: :test}
     ]
   end
 

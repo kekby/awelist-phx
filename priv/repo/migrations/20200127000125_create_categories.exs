@@ -8,6 +8,5 @@ defmodule AwesomeList.Repo.Migrations.CreateCategories do
 
       timestamps()
     end
-
   end
 end

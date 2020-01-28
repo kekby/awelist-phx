@@ -6,7 +6,7 @@ defmodule AwesomeListWeb.ListController do
     redirect(conn, to: Router.Helpers.list_path(conn, :index))
   end
 
-  def index(%{ query_params: %{ "min_stars" => stars } } = conn, _params) do
+  def index(%{query_params: %{"min_stars" => stars}} = conn, _params) do
     list = get_awesome_list(Integer.parse(stars))
     render(conn, "index.html", list: list)
   end
@@ -16,16 +16,15 @@ defmodule AwesomeListWeb.ListController do
     render(conn, "index.html", list: list)
   end
 
-  defp get_awesome_list({ stars, _ }) do
+  defp get_awesome_list({stars, _}) do
     AwesomeList.Storage.get_list(stars)
   end
 
   defp get_awesome_list(:error) do
-    AwesomeList.Storage.get_list
+    AwesomeList.Storage.get_list()
   end
 
   defp get_awesome_list() do
-    AwesomeList.Storage.get_list
+    AwesomeList.Storage.get_list()
   end
-
 end

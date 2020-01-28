@@ -6,7 +6,8 @@ defmodule AwesomeListWeb.MdParserTest do
     {"Other repos", "Just have fun!",
      [
        %{
-         description: " - A collaborative, real-time video fact-checking platform. (<a href=\"https://captainfact.io/\">  Docs</a>).",
+         description:
+           " - A collaborative, real-time video fact-checking platform. (<a href=\"https://captainfact.io/\">  Docs</a>).",
          link: {"CaptainFact", "https://github.com/CaptainFact/captain-fact-api"}
        },
        %{
@@ -34,16 +35,15 @@ defmodule AwesomeListWeb.MdParserTest do
   setup do
     api = Application.get_env(:awesome_list, :file_fetch_api)
     url = Application.get_env(:awesome_list, :github_awesome_repo)
-    { _, markdown } = api.fetch_raw_file(url)
-    { :ok, markdown: markdown }
+    {_, markdown} = api.fetch_raw_file(url)
+    {:ok, markdown: markdown}
   end
 
-  test "should return expected structure", %{ markdown: markdown } do
+  test "should return expected structure", %{markdown: markdown} do
     assert markdown |> MdParser.parse() == @expected
   end
 
-  test "should have correct categories length", %{ markdown: markdown } do
+  test "should have correct categories length", %{markdown: markdown} do
     assert markdown |> MdParser.parse() |> length == 2
   end
-
 end

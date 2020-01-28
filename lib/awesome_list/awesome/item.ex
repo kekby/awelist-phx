@@ -4,7 +4,6 @@ defmodule AwesomeList.Awesome.Item do
   import Ecto.Changeset
 
   schema "awesome_items" do
-
     field :title, :string
     field :description, :string
     field :last_updated, :naive_datetime

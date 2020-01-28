@@ -11,6 +11,5 @@ defmodule AwesomeList.Repo.Migrations.CreateAwesomeItems do
 
       timestamps()
     end
-
   end
 end

@@ -28,13 +28,13 @@ config :phoenix, :json_library, Jason
 config :awesome_list, AwesomeList.Scheduler,
   jobs: [
     # Run at startup:
-    {"@reboot", { AwesomeList.Loader , :get_list, [] } },
+    {"@reboot", {AwesomeList.Loader, :get_list, []}},
     # Runs every midnight:
-    {"@daily", { AwesomeList.Loader , :get_list, [] } }
+    {"@daily", {AwesomeList.Loader, :get_list, []}}
   ]
 
-
-config :awesome_list, github_awesome_repo: "https://raw.githubusercontent.com/h4cc/awesome-elixir/master/README.md"
+config :awesome_list,
+  github_awesome_repo: "https://raw.githubusercontent.com/h4cc/awesome-elixir/master/README.md"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
