@@ -33,6 +33,14 @@ defmodule AwesomeList.AstHelperTest do
     assert {"a", [{"href", "https://github.com/sasa1977/exactor"}], ["exactor"]} = AstHelper.find_node(@ast_mock, "a")
   end
 
+  test "should find all node childrens" do
+    assert {"li", [],
+    [
+      {"a", [{"href", "https://github.com/sasa1977/exactor"}], ["exactor"]},
+      " - Helpers for easier implementation of actors in Elixir."
+    ]} = AstHelper.find_node(@ast_mock, "li")
+  end
+
   test "should return nil if doesnt find single node" do
     assert nil == AstHelper.find_node(@ast_mock, "h1")
   end

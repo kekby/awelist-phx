@@ -31,7 +31,7 @@ defmodule AwesomeList.Loader do
     new_repos = repos
       # TODO: remove this
       |> Enum.take(2)
-      |> Task.async_stream(fn %{ link: link } -> GithubApi.get_repo_data(link) end)
+      |> Task.async_stream(fn %{ link: link, description: description } -> Map.put(GithubApi.get_repo_data(link), :description, description) end)
       |> Enum.map(fn {:ok, result} -> result end)
     
     { title, description, new_repos }

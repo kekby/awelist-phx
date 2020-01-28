@@ -1,14 +1,16 @@
 defmodule AwesomeList.Awesome.Item do
   use Ecto.Schema
+  alias AwesomeList.Awesome.Category
   import Ecto.Changeset
 
   schema "awesome_items" do
+
+    field :title, :string
     field :description, :string
     field :last_updated, :naive_datetime
     field :stars, :integer
-    field :title, :string
     field :url, :string
-
+    has_one :category, Category
     timestamps()
   end
 
