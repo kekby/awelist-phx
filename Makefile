@@ -2,6 +2,7 @@ install:
 	docker-compose run web mix deps.get
 	docker-compose run web mix ecto.create
 	docker-compose run test mix ecto.create
+	docker-compose run web mix ecto.migrate
 	cd assets && npm install && cd ..
 
 run:

@@ -22,6 +22,10 @@ To start application:
     ```sh
     docker-compose run test mix ecto.create
     ```
+  * Apply migrations
+    ```sh
+    docker-compose run web mix ecto.migrate
+    ```
   * install assets: 
     ```sh
     cd assets && npm install && cd ..

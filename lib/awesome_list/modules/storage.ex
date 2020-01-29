@@ -3,11 +3,12 @@ defmodule AwesomeList.Storage do
   import Ecto.Query, only: [from: 2]
 
   def get_list(stars) do
-    Repo.all(from item in Awesome.Item, where: item.stars >= ^stars, select: item)
+    query = from c in Awesome.Category, left_join: item in assoc(c, :repos), where: item.stars >= ^stars, preload: [repos: item] 
+    Repo.all(query)
   end
 
   def get_list() do
-    query = from item in Awesome.Item, preload: [:category]
+    query = from c in Awesome.Category, preload: [:repos]
 
     Repo.all(query)
   end
