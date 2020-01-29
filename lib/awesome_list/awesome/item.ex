@@ -9,14 +9,14 @@ defmodule AwesomeList.Awesome.Item do
     field :last_updated, :naive_datetime
     field :stars, :integer
     field :url, :string
-    has_one :category, Category
+    belongs_to :category, Category
     timestamps()
   end
 
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:title, :description, :url, :stars, :last_updated])
-    |> validate_required([:title, :description, :url, :stars, :last_updated])
+    |> cast(attrs, [:title, :description, :url, :stars, :last_updated, :category])
+    |> validate_required([:title, :description, :url, :stars, :last_updated, :category])
   end
 end
