@@ -25,7 +25,7 @@ defmodule AwesomeList.GithubApi do
 
   defp handle_repo_response(
          {200,
-          body = %{
+          %{
             "stargazers_count" => stars,
             "pushed_at" => last_updated
           }, _},

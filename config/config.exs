@@ -28,9 +28,9 @@ config :phoenix, :json_library, Jason
 config :awesome_list, AwesomeList.Scheduler,
   jobs: [
     # Run at startup:
-    {"@reboot", {AwesomeList.Loader, :get_list, []}},
+    {"@reboot", {AwesomeList.Loader, :get_and_save_list, []}},
     # Runs every midnight:
-    {"@daily", {AwesomeList.Loader, :get_list, []}}
+    {"@daily", {AwesomeList.Loader, :get_and_save_list, []}}
   ]
 
 config :awesome_list,

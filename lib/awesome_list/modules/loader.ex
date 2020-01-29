@@ -2,7 +2,7 @@ defmodule AwesomeList.Loader do
   alias AwesomeList.{MdParser, GithubApi, Storage}
   @timeout :infinity
 
-  def get_list() do
+  def get_and_save_list() do
     api = get_file_api()
 
     get_repo_url()

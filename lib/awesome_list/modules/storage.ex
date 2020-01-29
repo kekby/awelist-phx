@@ -7,25 +7,25 @@ defmodule AwesomeList.Storage do
   end
 
   def get_list() do
-    Repo.all(Awesome.Item)
+    query = from item in Awesome.Item, preload: [:category]
+
+    Repo.all(query)
   end
 
   def save_list(list) do
     list
     |> Enum.map(&save_category/1)
-    |> IO.inspect
     |> List.flatten()
     |> Enum.map(&save_awesome_repos/1)
   end
 
   defp save_category({title, description, repos}) do
-    on_conflict = [set: [description: description]]
-    category = %Awesome.Category{ title: title, description: description }
+    category = %Awesome.Category{title: title, description: description}
 
     {:ok, inserted} =
       Repo.insert(
         category,
-        on_conflict: { :replace, [:title, :description] },
+        on_conflict: {:replace, [:title, :description]},
         conflict_target: :title
       )
 
@@ -33,16 +33,13 @@ defmodule AwesomeList.Storage do
     |> Enum.map(fn r -> Map.put(r, :category, inserted) end)
   end
 
-  defp save_awesome_repos(
-         awesome_repo = %{
-           category: category,
-           name: title,
-           description: description,
-           repo: %{last_updated: last_updated, stars: stars},
-           url: url
-         }
-       ) do
-    
+  defp save_awesome_repos(%{
+         category: category,
+         name: title,
+         description: description,
+         repo: %{last_updated: last_updated, stars: stars},
+         url: url
+       }) do
     awesome_item = %Awesome.Item{
       title: title,
       description: description,
@@ -52,10 +49,11 @@ defmodule AwesomeList.Storage do
       category: category
     }
 
-    { :ok, inserted } = Repo.insert(
-      awesome_item,
-      on_conflict: { :replace,  [ :title, :stars, :last_updated, :description, :category_id ] },
-      conflict_target: :url
-    )
+    {:ok, _} =
+      Repo.insert(
+        awesome_item,
+        on_conflict: {:replace, [:title, :stars, :last_updated, :description, :category_id]},
+        conflict_target: :url
+      )
   end
 end

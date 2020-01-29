@@ -20,7 +20,7 @@ defmodule AwesomeList.AstHelper do
     search_node(childs, name, new_acc)
   end
 
-  defp check_node(node = {node_name, _, childs}, acc, name) do
+  defp check_node({_, _, childs}, acc, name) do
     search_node(childs, name, acc)
   end
 
