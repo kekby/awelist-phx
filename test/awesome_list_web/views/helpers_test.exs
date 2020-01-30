@@ -9,6 +9,7 @@ defmodule AwesomeListWeb.HelpersTest do
 
   test "should format category title to id" do
     assert Helpers.List.title_to_id("this is title") == "this-is-title"
+    assert Helpers.List.title_to_id("THIS is title") == "this-is-title"
     assert Helpers.List.title_to_id("") == ""
   end
 end

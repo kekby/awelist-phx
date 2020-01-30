@@ -18,5 +18,5 @@ defmodule AwesomeList.Awesome.Item do
     item
     |> cast(attrs, [:title, :description, :url, :stars, :last_updated, :category])
     |> validate_required([:title, :description, :url, :stars, :last_updated, :category])
-  end
+end
 end

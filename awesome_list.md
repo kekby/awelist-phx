@@ -15,7 +15,7 @@ A curated list of amazingly awesome Elixir libraries, resources, and shiny thing
 *Just have fun!*
 
 * [oops](https://github.com/nohardcode/oops) - Oops string generator.
-* [wtf](https://github.com/some_user/wtf) - Helpers for confusing people
+* [wtf](https://github.com/some_user/wtf) - Helpers for confusing - people
 * [CaptainFact](https://github.com/CaptainFact/captain-fact-api) - A collaborative, real-time video fact-checking platform. ([Docs](https://captainfact.io/)).
 
 # Contributing

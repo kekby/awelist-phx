@@ -1,5 +1,6 @@
 defmodule AwesomeList.Storage do
   alias AwesomeList.{Repo, Awesome}
+  require Logger
   import Ecto.Query, only: [from: 2]
 
   def get_list(stars) do
@@ -7,13 +8,14 @@ defmodule AwesomeList.Storage do
       from c in Awesome.Category,
         left_join: item in assoc(c, :repos),
         where: item.stars >= ^stars,
+        order_by: c.title,
         preload: [repos: item]
 
     Repo.all(query)
   end
 
   def get_list() do
-    query = from c in Awesome.Category, preload: [:repos]
+    query = from c in Awesome.Category, order_by: c.title, preload: [:repos]
 
     Repo.all(query)
   end
@@ -66,5 +68,9 @@ defmodule AwesomeList.Storage do
       )
 
     inserted
+  end
+
+  defp save_awesome_repos(_) do
+    nil
   end
 end

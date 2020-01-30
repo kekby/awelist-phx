@@ -3,30 +3,30 @@ defmodule AwesomeList.MdParserTest do
   alias AwesomeList.MdParser
 
   @expected [
-    {"Other repos", "Just have fun!",
+    {"Other repos", "<p>Just have fun!</p>",
      [
        %{
          description:
-           " - A collaborative, real-time video fact-checking platform. (<a href=\"https://captainfact.io/\">  Docs</a>).",
+           "A collaborative, real-time video fact-checking platform. (<a href=\"https://captainfact.io/\">  Docs</a>).",
          link: {"CaptainFact", "https://github.com/CaptainFact/captain-fact-api"}
        },
        %{
-         description: " - Helpers for confusing people",
+         description: "Helpers for confusing - people",
          link: {"wtf", "https://github.com/some_user/wtf"}
        },
        %{
-         description: " - Oops string generator.",
+         description: "Oops string generator.",
          link: {"oops", "https://github.com/nohardcode/oops"}
        }
      ]},
-    {"Actors", "Libraries and tools for working with actors and such.",
+    {"Actors", "<p>Libraries and tools for working with actors and such.</p>",
      [
        %{
-         description: " - Helpers for easier implementation of actors in Elixir.",
+         description: "Helpers for easier implementation of actors in Elixir.",
          link: {"exactor", "https://github.com/sasa1977/exactor"}
        },
        %{
-         description: " - Pipelined flow processing engine.",
+         description: "Pipelined flow processing engine.",
          link: {"dflow", "https://github.com/dalmatinerdb/dflow"}
        }
      ]}

@@ -25,4 +25,4 @@ compose-deps:
 	docker-compose run web mix deps.get
 
 compose-migrate:
-	docker-compsoe run web mix ecto.migrate
+	docker-compose run web mix ecto.migrate

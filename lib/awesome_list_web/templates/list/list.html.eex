@@ -1,7 +1,17 @@
+<h2>Contents</h2>
+
+<%= for category <- @list do %>
+  <li>
+    <a href=#<%= Helpers.List.title_to_id(category.title) %>>
+      <%= category.title %>
+    </a>
+  </li>
+<% end %>
+
 <ul>
   <%= for category <- @list do %>
-    <h2 id=<%= Helpers.List.title_to_id(category.title) %>> <%= category.title %> </h2>
-    <p><%= category.description |> raw() %></p>
+    <h2 id=<%= Helpers.List.title_to_id(category.title) %>><%= category.title %></h2>
+    <%= category.description |> raw() %>
     <%= for item <- category.repos do %>
       <li>
         <a href=<%= item.url %>><%= item.title %></a>
@@ -9,7 +19,6 @@
         📅<sub>214</sub>
         —
         <span><%= item.description |> raw() %></span>
-
         </li>
     <% end %>
   <% end %>

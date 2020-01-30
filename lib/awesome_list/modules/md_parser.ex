@@ -78,7 +78,9 @@ defmodule AwesomeList.MdParser do
     description =
       rest
       |> Earmark.Transform.transform(%{smartypants: true})
+      |> String.replace(" - ", "", global: false)
       |> String.replace("\n", "")
+      |> String.trim
 
     %{
       link: {repo_name, url},
