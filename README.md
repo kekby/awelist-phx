@@ -14,13 +14,9 @@ To start application:
     ```sh
     docker-compose run web mix deps.get
     ```
-  * Create database for dev:
+  * Create database:
     ```sh
     docker-compose run web mix ecto.create
-    ```
-    and for test:
-    ```sh
-    docker-compose run test mix ecto.create
     ```
   * Apply migrations
     ```sh
