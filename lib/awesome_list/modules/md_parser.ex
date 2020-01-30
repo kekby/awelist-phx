@@ -40,7 +40,9 @@ defmodule AwesomeList.MdParser do
 
   defp parse_description(description) do
     description
-    |> String.replace("*", "")
+      |> String.replace("*", "")
+      |> Earmark.as_html!()
+      |> String.trim
   end
 
   defp parse_repos(raw_repos) do

@@ -1,12 +1,16 @@
 <ul>
-  <%= for item <- @list do %>
-    <li>
-      <a href=<%= item.url %>><%= item.title %></a>
-      <%= Helpers.List.get_stars_icon(item.stars) %><sub><%= item.stars %></sub>
-      📅<sub>214</sub>
-      —
-      <span><%= item.description %></span>
+  <%= for category <- @list do %>
+    <h2 id=<%= Helpers.List.title_to_id(category.title) %>> <%= category.title %> </h2>
+    <p><%= category.description |> raw() %></p>
+    <%= for item <- category.repos do %>
+      <li>
+        <a href=<%= item.url %>><%= item.title %></a>
+        <%= Helpers.List.get_stars_icon(item.stars) %><sub><%= item.stars %></sub>
+        📅<sub>214</sub>
+        —
+        <span><%= item.description |> raw() %></span>
 
-      </li>
+        </li>
+    <% end %>
   <% end %>
 </ul>

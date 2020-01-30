@@ -12,14 +12,15 @@ defmodule AwesomeList.Application do
       # Start the Ecto repository
       AwesomeList.Repo,
       # Start the endpoint when the application starts
-      AwesomeListWeb.Endpoint,
+      AwesomeListWeb.Endpoint
     ]
 
     # Run scheduler only in prod and dev environments
-    children = case Mix.env() do
-      :test -> common_children
-      _     -> common_children ++ [AwesomeList.Scheduler]
-    end
+    children =
+      case Mix.env() do
+        :test -> common_children
+        _ -> common_children ++ [AwesomeList.Scheduler]
+      end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
