@@ -7,15 +7,19 @@ defmodule AwesomeList.Application do
 
   def start(_type, _args) do
     # List all child processes to be supervised
-    children = [
+
+    common_children = [
       # Start the Ecto repository
       AwesomeList.Repo,
       # Start the endpoint when the application starts
       AwesomeListWeb.Endpoint,
-      # Starts a worker by calling: AwesomeList.Worker.start_link(arg)
-      # {AwesomeList.Worker, arg},
-      AwesomeList.Scheduler
     ]
+
+    # Run scheduler only in prod and dev environments
+    children = case Mix.env() do
+      :test -> common_children
+      _     -> common_children ++ [AwesomeList.Scheduler]
+    end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

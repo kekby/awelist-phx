@@ -9,6 +9,9 @@ run:
 compose-test:
 	docker-compose run web mix test
 
+compose-coverage:
+	docker-compose run web mix test --cover 
+
 compose-kill:
 	docker-compose kill
 

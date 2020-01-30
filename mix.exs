@@ -10,7 +10,11 @@ defmodule AwesomeList.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+      ]
     ]
   end
 
@@ -47,7 +51,8 @@ defmodule AwesomeList.MixProject do
       {:tentacat, "~> 1.0"},
       {:httpoison, "~> 1.6"},
       {:earmark, "~> 1.4"},
-      {:bypass, "~> 1.0", only: :test}
+      {:bypass, "~> 1.0", only: :test},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
