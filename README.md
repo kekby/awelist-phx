@@ -60,6 +60,9 @@ Other useful commands:
   make compose-iex
 ```
 
+```sh
+  make compose-migrate
+```
 
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.

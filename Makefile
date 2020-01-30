@@ -1,10 +1,8 @@
 install:
 	docker-compose run web mix deps.get
 	docker-compose run web mix ecto.create
-	docker-compose run test mix ecto.create
 	docker-compose run web mix ecto.migrate
 	cd assets && npm install && cd ..
-
 run:
 	docker-compose up
 
@@ -22,3 +20,6 @@ compose-iex:
 
 compose-deps:
 	docker-compose run web mix deps.get
+
+compose-migrate:
+	docker-compsoe run web mix ecto.migrate
