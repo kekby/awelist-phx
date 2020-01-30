@@ -1,4 +1,4 @@
-defmodule AwesomeListWeb.FileFetcherTest do
+defmodule AwesomeList.FileFetcherTest do
   use ExUnit.Case
   alias AwesomeList.FileFetcherHttp
 

@@ -1,4 +1,4 @@
-defmodule AwesomeListWeb.MdParserTest do
+defmodule AwesomeList.MdParserTest do
   use ExUnit.Case
   alias AwesomeList.MdParser
 

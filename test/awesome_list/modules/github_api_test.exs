@@ -1,4 +1,4 @@
-defmodule AwesomeListWeb.GithubApiTest do
+defmodule AwesomeList.GithubApiTest do
   use ExUnit.Case
   alias AwesomeList.GithubApi
 
