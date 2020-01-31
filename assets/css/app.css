@@ -1,1 +1,12 @@
 /* This file is for your main application css. */
+:root {
+  --outdated-color: #ccc;
+}
+.outdated {
+  color: var(--outdated-color);
+  font-size: 0.8em;
+}
+
+.outdated a {
+  color: var(--outdated-color);
+}
