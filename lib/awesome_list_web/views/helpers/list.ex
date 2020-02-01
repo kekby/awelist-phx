@@ -18,7 +18,7 @@ defmodule AwesomeListWeb.Helpers.List do
   def get_repo_item_attributes(item) do
     days = get_days_from_last_update(item.last_updated)
     if days > 365 do
-      "class=\"outdated\""
+      "class=outdated"
     else
       ""      
     end
