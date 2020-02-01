@@ -1,13 +1,26 @@
 # AwesomeList
 
+## Contents:
+
+  - [Prerequisites](#prerequisites)
+  - [Important notes](#important-notes)
+  - [How to run](#how-to-run)
+  - [Make commands](#make-commands)
+
 ## Prerequisites
 
+- First, read the [notes](#important-notes).
 - make (for automatic installation)
 - Docker: https://docs.docker.com/install/ and docker-compose: https://docs.docker.com/compose/install/
 - Get an access token from [Github](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
 - Create `config/dev.secret.exs` file and place your token. For reference, see `config/dev.secret.example.exs`. 
 
+## Important notes
+  - Github Api fetcher runs via scheduler on every startup. Due to limitations for possible http requests per hour (5000 requests/hour for authorized) it's not recommended to restart an application frequently :)
+  - 404 http error in console is fine. Just outdated repositories.
+  - 403 http error possibly means that app is exceeded github api limitations.
 
+## How to run:
 To start application:
 
   * Get dependencies:
@@ -39,6 +52,7 @@ You can simply run shortcuts:
   make run
 ```
 
+### Make commands
 Other useful commands:
 ```sh
   make compose-test # run tests
@@ -62,11 +76,3 @@ Other useful commands:
 
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
