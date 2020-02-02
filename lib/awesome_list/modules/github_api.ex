@@ -18,28 +18,57 @@ defmodule AwesomeList.GithubApi do
   end
 
   defp fetch_repo(owner, name) do
+
+    get_stars(owner, name)
+    |> add_last_commit_date()
+  end
+
+
+  defp get_stars(owner, name) do
     get_client()
     |> Tentacat.Repositories.repo_get(owner, name)
     |> handle_repo_response(name)
   end
 
+  defp add_last_commit_date(repo_data = %{ name: name, owner: owner }) do
+    get_client()
+    |> Tentacat.Repositories.Branches.find(owner, name, "master")
+    |> handle_repo_response(name)
+    |> Map.merge(repo_data)
+  end
+
+  defp add_last_commit_date(_), do: nil
+
   defp handle_repo_response(
          {200,
           %{
             "stargazers_count" => stars,
-            "pushed_at" => last_updated
+            "owner" => %{ "login" => owner_name },
+          }, _},
+         name
+       ) do
+    %{
+      stars: stars,
+      owner: owner_name,
+      name: name
+    }
+  end
+
+  defp handle_repo_response(
+         {200,
+          %{
+            "commit" => %{ "commit" => %{ "author" => %{ "date" => last_updated } } },
           }, _},
          _
        ) do
     %{
-      stars: stars,
       last_updated: last_updated
     }
   end
 
   defp handle_repo_response({status, _, _}, repo_name) do
     Logger.warn("HTTP Status: #{status} on repo: #{repo_name}.")
-    nil
+    %{}
   end
 
   defp get_client() do
