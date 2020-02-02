@@ -1,7 +1,7 @@
 defmodule AwesomeList.StorageTest do
   use ExUnit.Case
   use AwesomeList.DataCase
-  alias AwesomeList.Storage
+  alias AwesomeList.{Storage}
 
   @category_keys [:title, :description, :repos]
 

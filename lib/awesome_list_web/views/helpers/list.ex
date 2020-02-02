@@ -12,16 +12,16 @@ defmodule AwesomeListWeb.Helpers.List do
   end
 
   def title_to_id(string) do
-    ~w"#{string}" |> Enum.join("-") |> String.downcase
+    ~w"#{string}" |> Enum.join("-") |> String.downcase()
   end
 
   def get_repo_item_attributes(item) do
     days = get_days_from_last_update(item.last_updated)
+
     if days > 365 do
       "class=outdated"
     else
-      ""      
+      ""
     end
   end
-
 end

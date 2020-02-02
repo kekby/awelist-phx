@@ -35,7 +35,6 @@ defmodule AwesomeList.Loader do
           nil -> nil
           _ -> Map.put(repo_data, :description, description)
         end
-
       end)
       |> Enum.map(fn {:ok, result} -> result end)
       |> Enum.filter(fn item -> is_map(item) end)

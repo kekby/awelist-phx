@@ -38,7 +38,7 @@ defmodule AwesomeList.GithubApi do
   end
 
   defp handle_repo_response({status, _, _}, repo_name) do
-    Logger.error("HTTP Status: #{status} on repo: #{repo_name}")
+    Logger.warn("HTTP Status: #{status} on repo: #{repo_name}.")
     nil
   end
 

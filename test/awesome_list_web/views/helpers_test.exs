@@ -18,7 +18,9 @@ defmodule AwesomeListWeb.HelpersTest do
     outdated_date = Date.add(now, -400)
     fresh_date = Date.add(now, -100)
 
-    assert Helpers.List.get_repo_item_attributes(%{last_updated: outdated_date }) == "class=outdated"
-    assert Helpers.List.get_repo_item_attributes(%{last_updated: fresh_date }) == ""
+    assert Helpers.List.get_repo_item_attributes(%{last_updated: outdated_date}) ==
+             "class=outdated"
+
+    assert Helpers.List.get_repo_item_attributes(%{last_updated: fresh_date}) == ""
   end
 end

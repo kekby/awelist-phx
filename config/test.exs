@@ -19,3 +19,5 @@ config :awesome_list, AwesomeList.Repo,
 
 config :awesome_list, :file_fetch_api, AwesomeList.FileFetcherFs
 config :awesome_list, github_awesome_repo: "awesome_list.md"
+
+import_config "dev.secret.exs"

@@ -40,9 +40,9 @@ defmodule AwesomeList.MdParser do
 
   defp parse_description(description) do
     description
-      |> String.replace("*", "")
-      |> Earmark.as_html!()
-      |> String.trim
+    |> String.replace("*", "")
+    |> Earmark.as_html!()
+    |> String.trim()
   end
 
   defp parse_repos(raw_repos) do
@@ -80,7 +80,7 @@ defmodule AwesomeList.MdParser do
       |> Earmark.Transform.transform(%{smartypants: true})
       |> String.replace(" - ", "", global: false)
       |> String.replace("\n", "")
-      |> String.trim
+      |> String.trim()
 
     %{
       link: {repo_name, url},
