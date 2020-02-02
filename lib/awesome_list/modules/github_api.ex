@@ -18,11 +18,9 @@ defmodule AwesomeList.GithubApi do
   end
 
   defp fetch_repo(owner, name) do
-
     get_stars(owner, name)
     |> add_last_commit_date()
   end
-
 
   defp get_stars(owner, name) do
     get_client()
@@ -30,7 +28,7 @@ defmodule AwesomeList.GithubApi do
     |> handle_repo_response(name)
   end
 
-  defp add_last_commit_date(repo_data = %{ name: name, owner: owner }) do
+  defp add_last_commit_date(repo_data = %{name: name, owner: owner}) do
     get_client()
     |> Tentacat.Repositories.Branches.find(owner, name, "master")
     |> handle_repo_response(name)
@@ -43,7 +41,7 @@ defmodule AwesomeList.GithubApi do
          {200,
           %{
             "stargazers_count" => stars,
-            "owner" => %{ "login" => owner_name },
+            "owner" => %{"login" => owner_name}
           }, _},
          name
        ) do
@@ -57,7 +55,7 @@ defmodule AwesomeList.GithubApi do
   defp handle_repo_response(
          {200,
           %{
-            "commit" => %{ "commit" => %{ "author" => %{ "date" => last_updated } } },
+            "commit" => %{"commit" => %{"author" => %{"date" => last_updated}}}
           }, _},
          _
        ) do

@@ -66,4 +66,23 @@ defmodule AwesomeList.StorageTest do
       assert item.stars >= stars
     end
   end
+
+  test "should return categories in correct order (sorted by title)" do
+    categories_titles =
+      Storage.get_list()
+      |> Enum.map(fn c -> c.title end)
+
+    assert categories_titles == ["XML", "YAML"]
+  end
+
+  test "should return awesome items in correct order (sorted by title)" do
+    categories =
+      Storage.get_list()
+      |> Enum.map(fn %{title: title, repos: repos} -> %{ title: title, repos: repos |> Enum.map(fn r -> r.title end) } end)
+
+    assert categories == [
+      %{title: "XML", repos: ["xml_builder", "xmlrpc"] },
+      %{title: "YAML", repos: ["yaml_elixir", "yomel"] }
+    ]
+  end
 end
