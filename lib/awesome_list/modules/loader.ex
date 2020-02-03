@@ -1,11 +1,12 @@
 defmodule AwesomeList.Loader do
+  require Logger
   alias AwesomeList.{MdParser, GithubApi, Storage, Scheduler}
   @timeout :infinity
 
   def check_and_run() do
     case Scheduler.should_run?() do
       true -> get_and_save_list()
-      _ -> nil
+      false -> Logger.info "Skipping loader task.."
     end
   end
   def get_and_save_list() do
