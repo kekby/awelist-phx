@@ -16,12 +16,25 @@
 - Create `config/dev.secret.exs` file and place your token. For reference, see `config/dev.secret.example.exs`. 
 
 ## Important notes
-  - Github Api fetcher runs via scheduler on every startup. Due to limitations for possible http requests per hour (5000 requests/hour for authorized) it's not recommended to restart an application frequently :)
-  - 404 http error in console is fine. Just outdated repositories.
-  - 403 http error possibly means that app is exceeded github api limitations.
+  - Fetching to Github API runs via scheduler on very first startup. It is recommended to wait until task is done, so scheduler can log successfull task in database.
+  - 404 HTTP status in console is fine. Just outdated repositories.
+  - 403 HTTP possibly means that app is exceeded Github API limitations. In this case tests would fail. Need to figure out how provide to Bypass external Github URL's.
 
 ## How to run:
-To start application:
+
+  You can simply run shortcuts:
+
+  ```sh
+    make install
+  ```
+
+  and if you're ready:
+
+  ```sh
+    make run
+  ```
+
+These commands is simply shortcuts for:
 
   * Get dependencies:
     ```sh
@@ -44,13 +57,8 @@ To start application:
     docker-compose up
     ```
 
-### OR:
 
-You can simply run shortcuts:
-```sh
-  make install
-  make run
-```
+
 
 ### Make commands
 Other useful commands:
