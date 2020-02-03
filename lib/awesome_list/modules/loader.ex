@@ -1,5 +1,5 @@
 defmodule AwesomeList.Loader do
-  alias AwesomeList.{MdParser, GithubApi, Storage}
+  alias AwesomeList.{MdParser, GithubApi, Storage, Scheduler}
   @timeout :infinity
 
   def get_and_save_list() do
@@ -10,6 +10,9 @@ defmodule AwesomeList.Loader do
     |> parse_response()
     |> transform_categories()
     |> Storage.save_list()
+
+    Scheduler.log_task()
+
   end
 
   defp parse_response({:ok, body}) do
