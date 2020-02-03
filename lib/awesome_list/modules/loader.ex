@@ -2,6 +2,12 @@ defmodule AwesomeList.Loader do
   alias AwesomeList.{MdParser, GithubApi, Storage, Scheduler}
   @timeout :infinity
 
+  def check_and_run() do
+    case Scheduler.should_run?() do
+      true -> get_and_save_list()
+      _ -> nil
+    end
+  end
   def get_and_save_list() do
     api = get_file_api()
 

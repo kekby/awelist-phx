@@ -1,7 +1,7 @@
 defmodule AwesomeList.LoaderTest do
   use ExUnit.Case
   use AwesomeList.DataCase
-  alias AwesomeList.{Repo, Loader, Awesome}
+  alias AwesomeList.{Repo, Loader, Awesome, Scheduler}
 
   describe "get_and_save_list/0" do
     setup do
@@ -29,6 +29,12 @@ defmodule AwesomeList.LoaderTest do
       Loader.get_and_save_list()
       tasks_after = Repo.all(Awesome.SchedulerTask)
       assert length(tasks_before) == length(tasks_after) - 1
+    end
+
+    test "should create log with completed_at" do
+      Loader.get_and_save_list()
+      last_task = Scheduler.get_last_task()
+      assert DateTime.diff(last_task.completed_at, DateTime.utc_now) < 60
     end
 
   end
